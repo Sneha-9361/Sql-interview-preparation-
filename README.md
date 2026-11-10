@@ -85,5 +85,38 @@
    * ROW_NUMBER(): Gives a unique, continuous number (1, 2, 3, 4...) to every row. Numbers never repeat, even when values are identical.
    * RANK(): Gives the same number to duplicate values, but skips the next rank numbers (e.g., 1, 2, 2, 4).
    * DENSE_RANK(): Gives the same number to duplicate values, but never skips any numbers (e.g., 1, 2, 2, 3).
+
+  8. How do you find duplicate records in a table?
+ * Answer:
+   To find duplicate records, group the table by the column(s) that should be unique and use HAVING COUNT(*) > 1 to filter out unique rows.
  * Example:
-   SELECT
+   SELECT email, COUNT(*) AS total_count
+   FROM Employees
+   GROUP BY email
+   HAVING COUNT(*) > 1;
+
+9. What is a CTE (Common Table Expression) and why is it used?
+ * Answer:
+   * A CTE is a temporary named result set defined at the beginning of a query using the WITH keyword.
+   * Why it is used: It makes long, complex queries much easier to read, organize, and debug compared to deeply nested subqueries.
+ * Example:
+   WITH HighSalaryEmployees AS (
+       SELECT emp_id, emp_name, department_id, salary
+       FROM Employees
+       WHERE salary > 50000
+   )
+   SELECT department_id, COUNT(*) AS total_high_earners
+   FROM HighSalaryEmployees
+   GROUP BY department_id;
+
+10. What is the difference between the LAG() and LEAD() window functions?
+ * Answer:
+   * LAG(): Accesses data from a previous row in the same result set without needing a self join.
+   * LEAD(): Accesses data from a following (next) row in the same result set without needing a self join.
+ * Example:
+   SELECT 
+       emp_name,
+       salary,
+       LAG(salary, 1)  OVER (ORDER BY salary) AS previous_salary,
+       LEAD(salary, 1) OVER (ORDER BY salary) AS next_salary
+   FROM Employees;
