@@ -120,3 +120,77 @@
        LAG(salary, 1)  OVER (ORDER BY salary) AS previous_salary,
        LEAD(salary, 1) OVER (ORDER BY salary) AS next_salary
    FROM Employees;
+
+   ### SQL Interview Preparation – Next 3 Questions
+
+11\. What is the difference between CHAR and VARCHAR in SQL?
+
+* CHAR: Fixed-length character data type. It reserves the specified amount of storage even if the actual text is shorter.
+
+* VARCHAR: Variable-length character data type. It stores only the required characters (plus some storage overhead).
+
+Example:
+
+```sql
+CREATE TABLE Employees (
+    emp_code CHAR(10),
+    emp_name VARCHAR(100)
+);
+```
+
+If we store `'John'`, CHAR(10) uses a fixed length of 10 characters, whereas VARCHAR(100) stores the actual text length plus overhead.
+
+12\. What is the difference between a Subquery and a CTE in SQL?
+
+* Subquery: A query written inside another SQL query. It is commonly used to filter or retrieve data.
+
+* CTE (Common Table Expression): A temporary named result set created using the WITH keyword. It makes complex queries easier to read and maintain.
+
+Example – Subquery:
+
+```sql
+SELECT *
+FROM Employees
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM Employees
+);
+```
+
+Example – CTE:
+
+```sql
+WITH AverageSalary AS (
+    SELECT AVG(salary) AS avg_salary
+    FROM Employees
+)
+SELECT *
+FROM Employees
+WHERE salary > (
+    SELECT avg_salary
+    FROM AverageSalary
+);
+```
+
+13\. What is the difference between COUNT(\*), COUNT(column), and COUNT(DISTINCT column)?
+
+* COUNT(\*): Counts all rows in a table, including rows containing NULL values.
+
+* COUNT(column): Counts only non-NULL values in the specified column.
+
+* COUNT(DISTINCT column): Counts only unique, non-NULL values in the specified column.
+
+Example:
+
+```sql
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(email) AS non_null_emails,
+    COUNT(DISTINCT email) AS unique_emails
+FROM Employees;
+```
+
+Interview tip: Remember that `COUNT(*)` includes NULL-containing rows, whereas `COUNT(column)` ignores NULL values.
+
+We can continue with 3 SQL interview questions at a time, keeping the same format with simple explanations and practical examples.
+
