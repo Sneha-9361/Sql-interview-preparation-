@@ -2,7 +2,7 @@
 
 Simple SQL interview questions and answers with practical examples for Data Analyst and Data Engineer roles.
 
-**Technologies:** SQL, MySQL, PostgreSQL, SQL Server
+**Technologies:** SQL, MySQL, SQL Server
 
 ---
 
