@@ -418,5 +418,65 @@ SELECT
     COUNT(DISTINCT email) AS unique_emails
 FROM Employees;
 ```
+## 14. What is the difference between INNER JOIN and LEFT JOIN?
 
+**Definition:**
+
+Both are used to combine records from two or more tables.
+
+- **INNER JOIN:** Returns only matching records from both tables.
+- **LEFT JOIN:** Returns all records from the left table and matching records from the right table. If there is no match, it returns NULL values for the right table columns.
+
+**Example:**
+
+```sql
+-- INNER JOIN
+SELECT
+    e.emp_name,
+    d.dept_name
+FROM Employees e
+INNER JOIN Departments d
+ON e.dept_id = d.dept_id;
+
+-- LEFT JOIN
+SELECT
+    e.emp_name,
+    d.dept_name
+FROM Employees e
+LEFT JOIN Departments d
+ON e.dept_id = d.dept_id;
+```
+
+**Real-Time Example:**
+
+We can use LEFT JOIN to find all employees, including employees who are not assigned to any department.
+
+---
+
+## 15. What is the difference between IS NULL and IS NOT NULL?
+
+**Definition:**
+
+These conditions are used to check whether a column contains NULL values.
+
+- **IS NULL:** Returns records where the column value is NULL.
+- **IS NOT NULL:** Returns records where the column value is not NULL.
+
+**Example:**
+
+```sql
+-- Find employees without email addresses
+SELECT *
+FROM Employees
+WHERE email IS NULL;
+
+-- Find employees with email addresses
+SELECT *
+FROM Employees
+WHERE email IS NOT NULL;
+```
+
+**Real-Time Example:**
+
+We can use IS NULL to identify missing customer information and improve data quality.
 
