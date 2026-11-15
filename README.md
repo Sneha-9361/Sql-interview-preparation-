@@ -459,10 +459,10 @@ We can use LEFT JOIN to find all employees, including employees who are not assi
 
 These conditions are used to check whether a column contains NULL values.
 
-- **IS NULL:** Returns records where the column value is NULL.
+- IS NULL: Returns records where the column value is NULL.
 - **IS NOT NULL:** Returns records where the column value is not NULL.
 
-**Example:**
+Example:
 
 ```sql
 -- Find employees without email addresses
@@ -476,7 +476,7 @@ FROM Employees
 WHERE email IS NOT NULL;
 ```
 
-**Real-Time Example:**
+Real-Time Example:
 
 We can use IS NULL to identify missing customer information and improve data quality.
 
