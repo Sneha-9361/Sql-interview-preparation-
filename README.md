@@ -480,3 +480,63 @@ Real-Time Example:
 
 We can use IS NULL to identify missing customer information and improve data quality.
 
+
+I checked your SQL Interview Preparation document. Your current list has 15 questions.
+
+I can add **2 more questions as Q16 and Q17**, continuing the same format (definition, example, and explanation).
+
+**16. What is the difference between&#x20;**`BETWEEN`**&#x20;and&#x20;**`IN`**&#x20;in SQL?**
+
+**Definition:**
+
+- **BETWEEN:** Filters values within a specified range.
+- **IN:** Checks whether a value matches any value in a given list.
+
+**Example:**
+
+```
+-- Using BETWEEN
+SELECT *
+FROM Employees
+WHERE salary BETWEEN 30000 AND 50000;
+
+-- Using IN
+SELECT *
+FROM Employees
+WHERE department_id IN (1, 2, 3);
+```
+
+**Explanation:**
+
+- BETWEEN returns employees whose salary is between 30,000 and 50,000, including both boundary values.
+- IN returns employees belonging to departments 1, 2, or 3.
+
+**17. What is the difference between UNION and JOIN in SQL?**
+
+**Definition:**
+
+- **UNION:** Combines rows from multiple SELECT statements vertically.
+- **JOIN:** Combines columns from two or more tables horizontally based on a related column.
+
+**Example:**
+
+```
+-- UNION
+SELECT emp_name FROM Employees
+UNION
+SELECT customer_name FROM Customers;
+
+-- JOIN
+SELECT e.emp_name, d.dept_name
+FROM Employees e
+INNER JOIN Departments d
+ON e.dept_id = d.dept_id;
+```
+
+**Explanation:**
+
+- UNION combines results from two tables into one column of rows.
+- JOIN combines related information from two tables into a single result.
+
+These two questions will be useful additions for Data Analyst and Data Engineer SQL interviews.
+
