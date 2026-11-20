@@ -538,5 +538,95 @@ ON e.dept_id = d.dept_id;
 - UNION combines results from two tables into one column of rows.
 - JOIN combines related information from two tables into a single result.
 
-These two questions will be useful additions for Data Analyst and Data Engineer SQL interviews.
+Add these two questions as **Q16 and Q17**. They are useful for Data Analyst and Data Engineer interviews.
 
+## **16. What is the difference between a Stored Procedure and a Function?**
+
+**Definition:**
+
+Both are database objects used to store reusable SQL logic.
+
+- **Stored Procedure:** A set of SQL statements stored in the database that can perform operations such as INSERT, UPDATE, DELETE, and SELECT.
+- **Function:** A reusable database object that returns a value or table based on the given input.
+
+**Example – Stored Procedure:**
+
+```
+DELIMITER //
+
+CREATE PROCEDURE GetEmployees()
+BEGIN
+    SELECT *
+    FROM Employees;
+END //
+
+DELIMITER ;
+
+CALL GetEmployees();
+```
+
+**Example – Function:**
+
+```
+DELIMITER //
+
+CREATE FUNCTION GetBonus(salary INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    RETURN salary * 10 / 100;
+END //
+
+DELIMITER ;
+
+SELECT emp_name, GetBonus(salary) AS bonus
+FROM Employees;
+```
+
+**Difference:**
+
+| Stored Procedure                            | Function                        |
+| ------------------------------------------- | ------------------------------- |
+| Called using CALL in MySQL                  | Used within SQL expressions     |
+| Can return result sets or output parameters | Must return a value             |
+| Can perform multiple operations             | Primarily used for calculations |
+
+**Interview Tip:** A stored procedure is commonly used to perform database operations, while a function is commonly used to calculate and return values.
+
+## **17. What is the difference between Clustered Index and Non-Clustered Index?**
+
+**Definition:**
+
+Indexes are used to improve the performance of data retrieval operations in a database.
+
+- **Clustered Index:** Determines the physical or logical organization of table data based on the indexed key, depending on the database engine.
+- **Non-Clustered Index:** Creates a separate index structure that stores indexed values and references to the corresponding table rows.
+
+**Example:**
+
+```
+-- Create a clustered index (SQL Server)
+CREATE CLUSTERED INDEX idx_emp_id
+ON Employees(emp_id);
+
+-- Create a non-clustered index (SQL Server)
+CREATE NONCLUSTERED INDEX idx_emp_name
+ON Employees(emp_name);
+```
+
+**Difference:**
+
+| Clustered Index                                  | Non-Clustered Index                               |
+| ------------------------------------------------ | ------------------------------------------------- |
+| Determines the organization of table data        | Maintains a separate index structure              |
+| Only one per table in SQL Server                 | Multiple can exist per table                      |
+| Useful for retrieving data based on indexed keys | Useful for searching different columns            |
+| Leaf level contains the actual data rows         | Leaf level contains index keys and row references |
+
+**Real-Time Example:**
+
+Suppose an Employees table contains thousands of records. Creating an index on `emp_name` can improve searches when retrieving employees by name.
+
+**Interview Tip:** Indexes improve read performance, but too many indexes can slow down INSERT, UPDATE, and DELETE operations.
+
+**Your document now has 17 questions.** These additions cover database programming and performance optimization, which are important topics for SQL interviews.
