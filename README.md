@@ -630,3 +630,98 @@ Suppose an Employees table contains thousands of records. Creating an index on `
 **Interview Tip:** Indexes improve read performance, but too many indexes can slow down INSERT, UPDATE, and DELETE operations.
 
 **Your document now has 17 questions.** These additions cover database programming and performance optimization, which are important topics for SQL interviews.
+
+
+
+### 18\. What is the difference between UPDATE and ALTER in SQL?
+
+Definition:
+
+Both are SQL commands, but they are used for different purposes.
+
+* UPDATE: Modifies existing data inside a table.
+
+* ALTER: Changes the structure of an existing table, such as adding, deleting or modifying columns.
+
+Example – UPDATE:
+
+```sql
+UPDATE Employees
+SET salary = 40000
+WHERE emp_id = 101;
+```
+
+This updates the salary of the employee whose ID is 101.
+
+Example – ALTER:
+
+```sql
+ALTER TABLE Employees
+ADD email VARCHAR(100);
+```
+
+This adds a new column called email to the Employees table.
+
+Difference:
+
+| UPDATE                | ALTER                        |
+| --------------------- | ---------------------------- |
+| Changes existing data | Changes table structure      |
+| DML command           | DDL command                  |
+| Uses SET and WHERE    | Uses ADD, DROP, MODIFY, etc. |
+
+Real-Time Example:
+
+If an employee's salary changes, we use UPDATE. If we want to add a new column for employee email, we use ALTER.
+
+Interview Tip: UPDATE changes the data, whereas ALTER changes the table structure.
+
+### 19\. What is the difference between GROUP BY and ORDER BY in SQL?
+
+Definition:
+
+Both are used to organize query results, but they perform different operations.
+
+* GROUP BY: Groups rows having the same values into groups, usually to perform aggregate calculations.
+
+* ORDER BY: Sorts the query results in ascending or descending order.
+
+Example – GROUP BY:
+
+```sql
+SELECT
+    department_id,
+    COUNT(*) AS total_employees
+FROM Employees
+GROUP BY department_id;
+```
+
+This calculates the total number of employees in each department.
+
+Example – ORDER BY:
+
+```sql
+SELECT *
+FROM Employees
+ORDER BY salary DESC;
+```
+
+This displays employees from the highest salary to the lowest salary.
+
+Difference:
+
+| GROUP BY                                  | ORDER BY                      |
+| ----------------------------------------- | ----------------------------- |
+| Groups similar records                    | Sorts records                 |
+| Commonly used with COUNT(), SUM(), AVG()  | Uses ASC and DESC             |
+| Reduces rows into groups when aggregating | Does not normally reduce rows |
+
+Real-Time Example:
+
+Suppose a company wants to analyze employee salaries.
+
+* GROUP BY helps calculate the average salary department-wise.
+
+* ORDER BY helps display employees based on salary from highest to lowest.
+
+
